@@ -7,6 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import pl.karkaminski.smalltalk.model.DateFact
 import pl.karkaminski.smalltalk.model.DateFactRepository
+import pl.karkaminski.smalltalk.model.OWMWeather
+import pl.karkaminski.smalltalk.model.OWMWeatherRepository
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -14,18 +16,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         private const val TAG = "MainViewModel"
     }
 
-    var dateFact : DateFact
     private val dateFactRepository : DateFactRepository
+    var dateFact : MutableLiveData<DateFact>
+
+    private val owmWeatherRepository : OWMWeatherRepository
+    var currentWeather : MutableLiveData<OWMWeather>
 
     init{
-        Log.i(TAG, "MainViewModel init block")
+        Log.d(TAG, "MainViewModel init block")
         dateFactRepository = DateFactRepository()
-        dateFact = DateFact()
+        dateFact = MutableLiveData<DateFact>()
         dateFact = dateFactRepository.dateFact
+
+        owmWeatherRepository = OWMWeatherRepository()
+        currentWeather = MutableLiveData<OWMWeather>()
+        currentWeather = owmWeatherRepository.currentWeather
     }
 
-    fun refreshFact() {
+    fun refreshDateFact() {
         dateFactRepository.setDateFact()
+        Log.d(TAG, "refreshDateFact: ")
     }
 
 }

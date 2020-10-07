@@ -51,4 +51,11 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
+    //Joda-time
+    implementation group: 'joda-time', name: 'joda-time', version: '2.10.6'
+
+    //picasso
+    implementation 'com.squareup.picasso:picasso:2.8'
+
+
 }
